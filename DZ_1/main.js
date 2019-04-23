@@ -15,4 +15,4 @@ let appData = {
     savings: false
 }
 
-alert('Ваш дневной бюджет: ' + appData.money/30)
+alert('Ваш дневной бюджет: ' + appData.money/30);
