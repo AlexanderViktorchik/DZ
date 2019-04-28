@@ -38,12 +38,12 @@ chooseExpenses();
 
 function chooseOptExpenses() {
     for (let i = 0; i < 3; i++) {
-        let a = i+1,
-            b = prompt('Статья необязательных расходов?', '');
-        if (b != '' &&
-            (typeof (b)) != null) {
+        let c = i+1,
+            d = prompt('Статья необязательных расходов?', '');
+        if (d != '' &&
+            (typeof (d)) != null) {
             console.log('done');
-            appData.optionalExpenses[a] = b;
+            appData.optionalExpenses[c] = d;
         } else {
             i--;
         }
