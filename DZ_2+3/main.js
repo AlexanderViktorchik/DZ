@@ -74,8 +74,11 @@ let appData = {
             items = prompt('Что принесет дополнительный доход? (Перечислите чeрез запятую)', '');
         }
         appData.income = items.split(', ');
+        console.log(appData.income);
         appData.income.push(prompt('Может что-то ещё?'));
+        console.log(appData.income);
         appData.income.sort();
+        console.log(appData.income);
         alert('Способы доп. заработка: ');
         appData.income.forEach(function(items, i) {
             i = i + 1;
@@ -84,8 +87,9 @@ let appData = {
     },
     showObject: function() {
         console.log('Наша программа включает в себя данные: ');   
-        for (let key in appData) {
-            console.log(key);
+        for (let key in appData) {//key in - перебор ключей объекта, object[key] - перебор значений ключей
+            console.log(key);  //+ ' имеет значение ' + appData[key]
             }
         }
 }
+// console.log(Object.keys(appData).length);   --- показывает список свойств в объекте
