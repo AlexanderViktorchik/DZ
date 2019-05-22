@@ -88,4 +88,4 @@ let appData = {
             console.log(key);
             }
         }
-}
+};
