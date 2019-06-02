@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //timer
 
-    let deadline = '2019-06-02 15:43';
+    let deadline = '2019-06-14';
     
 
     function calcTime(endtime) {
