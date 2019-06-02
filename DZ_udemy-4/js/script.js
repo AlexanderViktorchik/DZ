@@ -38,17 +38,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //timer
 
-    let deadline = '2019-06-03';
-    let timeout;
+    let deadline = '2019-06-02 15:21';
 
     function calcTime() {
-        timeout = Date.parse(deadline) - new Date();
-
-        let seconds = Math.floor((timeout / 1000) % 60),
-            minutes = Math.floor((timeout / 1000 / 60) % 60),
-            hours = Math.floor((timeout / 1000 / 60 / 60) % 24);
+        let t = Date.parse(deadline) - new Date(),
+            seconds = Math.floor((t / 1000) % 60),
+            minutes = Math.floor((t / 1000 / 60) % 60),
+            hours = Math.floor((t / 1000 / 60 / 60) % 24);
 
         return {
+            'total': t,
             'seconds': seconds,
             'minutes': minutes,
             'hours': hours
@@ -59,33 +58,34 @@ window.addEventListener('DOMContentLoaded', function () {
         let hours = document.querySelector('.hours'),
             minutes = document.querySelector('.minutes'),
             seconds = document.querySelector('.seconds'),
-            t = calcTime();
+            everyTime = setInterval(updateClock, 1000);
 
-        hours.textContent = t.hours;
-        minutes.textContent = t.minutes;
-        seconds.textContent = t.seconds;
+        function updateClock() {
+            let t = calcTime();
+            hours.textContent = t.hours;
+            minutes.textContent = t.minutes;
+            seconds.textContent = t.seconds;
 
-        for (let i = 0; i < 10; i++) {
-            if (hours.textContent == i) {
-                hours.textContent = '0' + i;
+            for (let i = 0; i < 10; i++) {
+                if (hours.textContent == i) {
+                    hours.textContent = '0' + i;
+                }
+                if (minutes.textContent == i) {
+                    minutes.textContent = '0' + i;
+                }
+                if (seconds.textContent == i) {
+                    seconds.textContent = '0' + i;
+                }
             }
-            if (minutes.textContent == i) {
-                minutes.textContent = '0' + i;
-            }
-            if (seconds.textContent == i) {
-                seconds.textContent = '0' + i;
-            }
-        }
 
-        if (timeout <= 0) {
-            clearInterval(everyTime);
-            hours.textContent = '00';    
-            minutes.textContent = '00';
-            seconds.textContent = '00';
+            if (t.total <= 0) {
+                clearInterval(everyTime);
+                hours.textContent = '00';
+                minutes.textContent = '00';
+                seconds.textContent = '00';
+            }
         }
     }
 
-    let everyTime = setInterval(showTime, 1000);
-
-    everyTime();
+    showTime();
 });
