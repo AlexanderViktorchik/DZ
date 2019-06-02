@@ -38,10 +38,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //timer
 
-    let deadline = '2019-06-02 15:21';
+    let deadline = '2019-06-02 15:43';
+    
 
-    function calcTime() {
-        let t = Date.parse(deadline) - new Date(),
+    function calcTime(endtime) {
+        let t = Date.parse(endtime) - Date.parse(new Date()),
             seconds = Math.floor((t / 1000) % 60),
             minutes = Math.floor((t / 1000 / 60) % 60),
             hours = Math.floor((t / 1000 / 60 / 60) % 24);
@@ -61,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function () {
             everyTime = setInterval(updateClock, 1000);
 
         function updateClock() {
-            let t = calcTime();
+            let t = calcTime(deadline);
             hours.textContent = t.hours;
             minutes.textContent = t.minutes;
             seconds.textContent = t.seconds;
