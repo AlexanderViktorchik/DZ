@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
     //timer
 
     let deadline = '2019-06-14';
-    
+
 
     function calcTime(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -89,4 +89,39 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     showTime();
+
+    //modal
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function () {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        console.log(this);
+        document.body.style.overflow = 'hidden';
+    });
+
+    close.addEventListener('click', function () {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
+
+    let descriptionBtn = document.querySelectorAll('.description-btn'),
+        allInfo = document.querySelector('.info');
+
+    allInfo.addEventListener('click', function () {
+        let target = event.target;
+        if (target && target.classList.contains('description-btn')) {
+            for (let i = 0; i < descriptionBtn.length; i++) {
+                if (target == descriptionBtn[i]) {
+                    overlay.style.display = 'block';                   
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        }
+    });
+
 });
