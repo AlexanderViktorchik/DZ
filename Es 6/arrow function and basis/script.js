@@ -1,5 +1,5 @@
 let fun = () => {
-    console.log(this);
+    console.log(this); //window
 }
 fun();
 
@@ -10,7 +10,7 @@ let obj = {
     name: 'Ivan',
     sayAge: function () {
         let say = () => {
-            console.log(this);
+            console.log(this); //object
         }
         say();
     }
@@ -22,7 +22,7 @@ let btn = document.querySelector('button');
 
 btn.addEventListener('click', function() {
     let show = () => {
-        console.log(this);
+        console.log(this); //button
     }
     show();
 });
