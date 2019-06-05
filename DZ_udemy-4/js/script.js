@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //timer
 
-    let deadline = '2019-06-06 13:41';
+    let deadline = '2019-08-01';
 
 
     function calcTime(endtime) {
@@ -47,11 +47,13 @@ window.addEventListener('DOMContentLoaded', function () {
             minutes = Math.floor((t / 1000 / 60) % 60),
             hours = Math.floor(t / 1000 / 60 / 60);
 
-        let t = Date.parse(endtime) - Date.parse(new Date()),
-            seconds = Math.floor((t / 1000) % 60),
-            minutes = Math.floor((t / 1000 / 60) % 60),
-            hours = Math.floor((t / 1000 / 60 / 60) % 24),
-            days = Math.floor(t / 1000 / 60 / 60 / 24);
+        //days
+
+        // let t = Date.parse(endtime) - Date.parse(new Date()),
+        //     seconds = Math.floor((t / 1000) % 60),
+        //     minutes = Math.floor((t / 1000 / 60) % 60),
+        //     hours = Math.floor((t / 1000 / 60 / 60) % 24),
+        //     days = Math.floor(t / 1000 / 60 / 60 / 24);
 
         return {
             'total': t,
