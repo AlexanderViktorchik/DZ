@@ -107,7 +107,6 @@ window.addEventListener('DOMContentLoaded', function () {
     more.addEventListener('click', function () {
         overlay.style.display = 'block';
         this.classList.add('more-splash');
-        console.log(this);
         document.body.style.overflow = 'hidden';
     });
 
@@ -125,11 +124,77 @@ window.addEventListener('DOMContentLoaded', function () {
         if (target && target.classList.contains('description-btn')) {
             for (let i = 0; i < descriptionBtn.length; i++) {
                 if (target == descriptionBtn[i]) {
-                    overlay.style.display = 'block';                   
+                    overlay.style.display = 'block';
                     document.body.style.overflow = 'hidden';
                 }
             }
         }
     });
+
+
+   //form
+
+     //если нужно отправить в формате JSON
+
+        /*
+            request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            let formData = new FormData(elem);
+            let obj = {};
+            formData.forEach(function (value, key) {
+                obj[key] = value;
+            });
+            let json = JSON.stringify(obj);
+            request.send(json);
+        */
+
+
+       let message = {
+        loading: 'Загрузка...',
+        failure: 'Что-то пошло не так...',
+        success: 'Спасибо! Скоро мы с вами свяжемся!'
+    }
+
+    let form = document.querySelector('.main-form'),
+        input = document.querySelectorAll('input'),
+        mainForm = document.getElementById('form'),
+        inputFirstInMainForm = mainForm.querySelectorAll('input') [0],
+        inputSecondInMainForm = mainForm.querySelectorAll('input') [1],
+        statusMessage = document.createElement('div');
+    statusMessage.classList.add('status');
+
+    inputFirstInMainForm.setAttribute('name', 'email');
+    inputSecondInMainForm.setAttribute('name', 'phone');
+
+    function sendForm (elem) {
+        elem.addEventListener('submit', function (event) {
+            event.preventDefault();
+            elem.appendChild(statusMessage);
+    
+            let request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+            request.setRequestHeader('Content-type', 'application/x-www-form-unrencoded');
+    
+            let formData = new FormData(elem);
+            request.send(formData);
+    
+            request.addEventListener('readystatechange', () => {
+                if (request.readyState < 4) {
+                    statusMessage.innerHTML = message.loading;
+                } else if (request.readyState === 4 && request.status == 200) {
+                    statusMessage.innerHTML = message.success;
+                } else {
+                    statusMessage.innerHTML = message.failure;
+                }
+            });
+    
+            for (let i = 0; i < input.length; i++) {
+                input[i].value = '';
+            }
+    
+        });
+    }
+    
+    sendForm (form);
+    sendForm (mainForm);
 
 });
