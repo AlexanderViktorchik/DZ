@@ -13,6 +13,8 @@ inputRub.addEventListener('input', () => {
         return new Promise(function (resolve, reject) {
             request.addEventListener('readystatechange', function() {
                 if (request.readyState === 4 && request.status == 200) {
+                    let data = JSON.parse(request.response);
+                    inputUsd.value = inputRub.value / data.usd;
                     resolve();
                 } else {
                     reject();
@@ -22,10 +24,7 @@ inputRub.addEventListener('input', () => {
     }
 
     postData()
-        .then(() => {
-            let data = JSON.parse(request.response);
-            inputUsd.value = inputRub.value / data.usd;
-        })
+        .then()
         .catch(() => inputUsd.value = "Что-то пошло не так!");
 
 });

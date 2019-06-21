@@ -33,10 +33,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
     });
 
+
     //timer
 
     let deadline = '2019-08-01';
-
 
     function calcTime(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
             minutes = Math.floor((t / 1000 / 60) % 60),
             hours = Math.floor(t / 1000 / 60 / 60);
 
-        //days
+        //with days
 
         // let t = Date.parse(endtime) - Date.parse(new Date()),
         //     seconds = Math.floor((t / 1000) % 60),
@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', function () {
     more.addEventListener('click', function () {
         overlay.style.display = 'block';
         this.classList.add('more-splash');
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden'; //нельзя прокрутить страницу
     });
 
     close.addEventListener('click', function () {
@@ -117,13 +117,10 @@ window.addEventListener('DOMContentLoaded', function () {
         allInfo = document.querySelector('.info');
 
     allInfo.addEventListener('click', function () {
-        let target = event.target;
-        if (target && target.classList.contains('description-btn')) {
-            for (let i = 0; i < descriptionBtn.length; i++) {
-                if (target == descriptionBtn[i]) {
-                    overlay.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
+        for (let i = 0; i < descriptionBtn.length; i++) {
+            if (event.target.classList.contains('description-btn') && event.target == descriptionBtn[i]) {
+                overlay.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             }
         }
     });
@@ -172,9 +169,9 @@ window.addEventListener('DOMContentLoaded', function () {
             request.setRequestHeader('Content-type', 'application/x-www-form-unrencoded');
             let formData = new FormData(elem);
 
-            function postData(data) {
+            function postData() {
                 return new Promise(function (resolve, reject) {
-                    request.send(data);
+                    request.send(formData);
                     request.addEventListener('readystatechange', () => {
                         if (request.readyState < 4) {
                             resolve();
@@ -193,13 +190,22 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            postData(formData)
+            function clearMessage() {
+                close.addEventListener('click', function () {
+                    elem.removeChild(statusMessage);
+                });
+            }
+
+            postData()
                 .then(() => statusMessage.innerHTML = message.loading)
                 .then(() => statusMessage.innerHTML = message.success)
                 .catch(() => statusMessage.innerHTML = message.failure)
-                .then(clearInput);
+                .then(clearInput)
+                .then(clearMessage);
 
         });
+
+
     }
 
     sendForm(form);
@@ -297,7 +303,7 @@ window.addEventListener('DOMContentLoaded', function () {
         if (persons.value == '' || restDays.value == '') {
             totalValue.innerHTML = 0;
         } else {
-            totalValue.innerHTML = total * this.options[this.selectedIndex].value;
+            totalValue.innerHTML = total * this.options[this.selectedIndex].value; // пример place.options[1].value
         }
     });
 
