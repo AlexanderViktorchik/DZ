@@ -1,0 +1,23 @@
+body{
+    background-color: blanchedalmond;
+}
+.center{
+    position: relative;
+    top: 200px;
+    left: 530px;
+}
+.list-item{
+    margin-left: 90px;
+    height: 40px;
+}
+.image{
+    position: relative;
+    top: 300px;
+    left: 218px;
+    height: 500px;
+    width: 500px;
+    margin-left: 186px;
+}
+.active{
+    background-color: brown;
+}

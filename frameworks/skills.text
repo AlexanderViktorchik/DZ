@@ -1,0 +1,20 @@
+Angular (цельное решение)
+1) node.js -> npm
+2) TypeScript
+3) Webpack
+4) MVC (model view controler)
+5) Angular
+
+React (библиотека, по кусочкам)
+1) node.js -> npm
+2) Babel
+3) Webpack
+4) JSX
+5) React
+
+Vue (библиотека, по кусочкам)
+1) node.js -> npm
+2) Babel
+3) Webpack
+4) Vue
+
