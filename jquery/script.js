@@ -11,8 +11,7 @@ $(document).ready(function () { //вместо DOMContentLoaded
         $('.image:odd').animate(
             {
                 opacity: "toggle",
-                height: 'toggle',
-                width: "toggle"
+                height: 'toggle'
             }, 3000
         );  
     });
